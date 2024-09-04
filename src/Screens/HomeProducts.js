@@ -1,27 +1,9 @@
 // UserListScreen.js
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, FlatList, StyleSheet, Image, Alert, TouchableOpacity } from 'react-native';
-import { Text, Divider, ActivityIndicator } from 'react-native-paper';
-import axios from 'axios';
+import { Text, Divider } from 'react-native-paper';
 
-const HomeProducts = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Llamada a la API de fotos
-    axios.get('https://jsonplaceholder.typicode.com/photos')
-      .then((response) => {
-        const limitedData = response.data.slice(0, 20); // Limitar a 20 resultados
-        setData(limitedData);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-      });
-  }, []);
-
+const HomeProducts = ({ data }) => {
   // Separador entre elementos
   const renderSeparator = () => (
     <Divider style={styles.divider} />
@@ -51,10 +33,6 @@ const HomeProducts = () => {
       </View>
     </TouchableOpacity>
   );
-
-  if (loading) {
-    return <ActivityIndicator animating={true} size="large" style={styles.loading} />;
-  }
 
   return (
     <FlatList
@@ -98,10 +76,6 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     backgroundColor: '#E0E0E0', // Gris claro
-  },
-  loading: {
-    flex: 1,
-    justifyContent: 'center',
   },
 });
 
