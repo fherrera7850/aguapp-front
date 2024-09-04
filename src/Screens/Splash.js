@@ -1,6 +1,7 @@
 // SplashScreen.js
 import React, { useEffect, useRef } from 'react';
 import { View, Image, ActivityIndicator, StyleSheet, Animated } from 'react-native';
+import { Text } from 'react-native-paper';
 
 const SplashScreen = ({ onFinish }) => {
   const bounceValue = useRef(new Animated.Value(0)).current;
@@ -37,10 +38,11 @@ const SplashScreen = ({ onFinish }) => {
   return (
     <View style={styles.container}>
       <Animated.Image
-        source={require('./../../assets/img/gotasplash1.png')} // Cambia esta ruta por la ruta de tu imagen
+        source={require('./../assets/img/gotasplash1.png')} // Cambia esta ruta por la ruta de tu imagen
         style={[styles.logo, { transform: [{ translateY: bounceValue }] }]}
       />
       <ActivityIndicator size="large" color="#0000ff" />
+      <Text style={{ marginTop: 20 }}>¡ Bienvenid@ !</Text>
     </View>
   );
 };
